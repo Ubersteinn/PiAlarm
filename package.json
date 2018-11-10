@@ -6,7 +6,6 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --prod",
-    "serve": "./serve",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -24,12 +23,7 @@
     "@angular/router": "~7.0.0",
     "core-js": "^2.5.4",
     "rxjs": "~6.3.3",
-    "zone.js": "~0.8.26",
-    "compression": "1.7.0",
-    "connect": "3.6.2",
-    "connect-static-file": "1.2.0",
-    "minimist": "1.2.0",
-    "serve-static": "1.12.3"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.10.0",
