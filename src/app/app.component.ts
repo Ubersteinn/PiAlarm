@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AlarmService } from 'src/shared';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'PiAlarm';
+  public title = 'PiAlarm';
+
+  constructor(private alarmService: AlarmService) {}
+
+  public toggleAlarm() {
+    this.alarmService.toggleAlarm();
+  }
 }
