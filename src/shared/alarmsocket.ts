@@ -1,12 +1,14 @@
 export class AlarmSocket {
 
     public ws: WebSocket;
-    private url = 'ws://192.168.50.101:4200';
+    private url: string;
 
-    constructor() {}
+    constructor(url: string) {
+        this.url = url;
+    }
 
-    public async send(): Promise<void> {
-        return new Promise<void>(async resolve => {
+    public async send(command: string): Promise<string> {
+        return new Promise<string>(async resolve => {
             let resolved = false;
             const socket = await this.connect(this.url);
             socket.onmessage = message => {
@@ -14,16 +16,16 @@ export class AlarmSocket {
                 this.close();
                 if (!resolved) {
                     resolved = true;
-                    resolve();
+                    resolve(message.data);
                 }
             };
-            socket.send('Toggle the alarm!');
+            socket.send(command);
             setTimeout(() => {
                 this.close();
                 if (!resolved) {
                     console.error('AlarmSocket: timed out');
                     resolved = true;
-                    resolve();
+                    resolve(null);
                 }
             }, 1000);
         });

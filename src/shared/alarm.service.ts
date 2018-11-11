@@ -3,13 +3,26 @@ import { AlarmSocket } from './alarmsocket';
 
 export class AlarmService {
 
+    private url = 'ws://bedpi02.local:4200';
     private alarm: AlarmSocket;
+    private _playing: boolean;
 
-    constructor() {
-        this.alarm = new AlarmSocket();
+    public get playing(): boolean {
+        return this._playing;
     }
 
-    public async toggleAlarm() {
-        await this.alarm.send();
+    constructor() {
+        this.alarm = new AlarmSocket(this.url);
+        this._playing = false;
+    }
+
+    public async play() {
+        const response = await this.alarm.send('play');
+        this._playing = response === 'playing';
+    }
+
+    public async pause() {
+        const response = await this.alarm.send('pause');
+        this._playing = response === 'playing';
     }
 }

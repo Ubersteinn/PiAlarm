@@ -3,7 +3,7 @@
   <h1>
     {{ title }}
   </h1>
-  <button (click)="toggleAlarm()">Toggle Alarm</button>
+  <button (click)="toggleAlarm()">{{alarmService.playing ? 'play' : 'pause'}} alarm</button>
 </div>
 
 <router-outlet></router-outlet>

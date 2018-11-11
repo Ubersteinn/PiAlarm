@@ -9,9 +9,13 @@ import { AlarmService } from 'src/shared';
 export class AppComponent {
   public title = 'PiAlarm';
 
-  constructor(private alarmService: AlarmService) {}
+  constructor(public alarmService: AlarmService) {}
 
   public toggleAlarm() {
-    this.alarmService.toggleAlarm();
+    if (this.alarmService.playing) {
+      this.alarmService.pause();
+    } else {
+      this.alarmService.play();
+    }
   }
 }
